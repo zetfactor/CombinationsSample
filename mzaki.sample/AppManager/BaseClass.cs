@@ -42,16 +42,17 @@ namespace mzaki.sample.AppManager
             return userChoice;
         }
 
-        public void PrintResult(int bagesize, List<string> listToPrint, string userChoice)
+        public void PrintResult(int bagesize, string userChoice)
         {
             var waysPrinter = new WaysService();
             var waysCounter = new WaysCounter();
+            var listToPrint = waysPrinter.GetWays(bagesize, userChoice == "Combinations" ? false : true);
             Console.WriteLine("-----------------------------------------------");
             Console.WriteLine("There are {0} {1} ways to empty a bag of {2} balls.",
-                userChoice == "Combination" ? waysCounter.CountCombinations(listToPrint) : waysCounter.CountPermutations(bagesize), userChoice, bagesize);
+                userChoice == "Combinations" ? waysCounter.CountCombinations(listToPrint) : waysCounter.CountPermutations(bagesize), userChoice, bagesize);
             Console.WriteLine("-----------------------------------------------");
             Console.WriteLine("Different  {0}  ways you can remove the balls :", userChoice);
-            listToPrint = waysPrinter.GetWays(bagesize, userChoice == "Combinations" ? false : true);
+          
             foreach (var item in listToPrint)
             {
                 Console.WriteLine(item);

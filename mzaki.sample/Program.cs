@@ -12,7 +12,6 @@ namespace mzaki.sample
         private static bool proceed = true;
         private static string bagesize = string.Empty;
         private static string userChoice = "";
-        private static List<string>  listToPrint = new List<string>();
         private static InputValidation validator = new InputValidation();
         private static BaseClass appManager = new BaseClass();
 
@@ -25,7 +24,7 @@ namespace mzaki.sample
                 if (validator.ValidateInput(bagesize))
                 {
                     var _bageSize = int.Parse(bagesize);
-                    appManager.PrintResult(_bageSize, listToPrint, userChoice);
+                    appManager.PrintResult(_bageSize, userChoice);
                     Reset();
                     proceed = appManager.TryAgain(Console.ReadLine());
                 }
@@ -33,7 +32,6 @@ namespace mzaki.sample
         }
         private static void Reset()
         {
-            listToPrint.Clear();
             bagesize = "";
             userChoice = "";
         }
